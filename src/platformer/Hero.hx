@@ -163,9 +163,7 @@ class Hero extends defold.support.Script<HeroData> {
     override function on_message<T>(self:HeroData, message_id:Message<T>, message:T, _) {
         // check if we received a contact point message
         switch (message_id) {
-            case DefoldMessages.ContactPointResponse:
-            // check that the object is something we consider geometry
-            if (message.group == group_geometry)
+            case DefoldMessages.ContactPointResponse if (message.group == group_geometry): // check that the object is something we consider geometry
                 handle_geometry_contact(self, message.normal, message.distance);
         }
     }
