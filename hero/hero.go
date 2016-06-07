@@ -1,6 +1,6 @@
 components {
   id: "script"
-  component: "/hero/hero.script"
+  component: "/scripts/platformer/Hero.script"
   position {
     x: 0.0
     y: 0.0

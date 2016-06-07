@@ -1,6 +1,6 @@
 components {
   id: "script"
-  component: "/main/main.script"
+  component: "/scripts/platformer/Main.script"
   position {
     x: 0.0
     y: 0.0
