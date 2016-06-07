@@ -7,8 +7,9 @@ import defold.Vector3;
 import defold.Hash;
 import defold.Go;
 import defold.Sprite;
+import defold.Physics;
 import Defold.hash;
-import defold.support.InputAction;
+import defold.support.Script;
 
 typedef HeroData = {
     var velocity:Vector3;
@@ -20,7 +21,7 @@ typedef HeroData = {
     var touch_jump_timer:Float;
 }
 
-class Hero extends defold.support.Script<HeroData> {
+class Hero extends Script<HeroData> {
     // these are the tweaks for the mechanics, feel free to change them for a different feeling
     // the acceleration to move right/left
     static var move_acceleration = 3500;
@@ -48,7 +49,7 @@ class Hero extends defold.support.Script<HeroData> {
 
     override function init(self:HeroData) {
         // this lets us handle input in this script
-        Msg.post(".", DefoldMessages.AcquireInputFocus);
+        Msg.post(".", GoMessages.AcquireInputFocus);
 
         // initial player velocity
         self.velocity = Vmath.vector3(0, 0, 0);
@@ -132,7 +133,7 @@ class Hero extends defold.support.Script<HeroData> {
         // only play animations which are not already playing
         if (self.anim != anim) {
             // tell the sprite to play the animation
-            Msg.post("#sprite", DefoldMessages.PlayAnimation, {id: anim});
+            Msg.post("#sprite", SpriteMessages.PlayAnimation, {id: anim});
             // remember which animation is playing
             self.anim = anim;
         }
@@ -163,7 +164,7 @@ class Hero extends defold.support.Script<HeroData> {
     override function on_message<T>(self:HeroData, message_id:Message<T>, message:T, _) {
         // check if we received a contact point message
         switch (message_id) {
-            case DefoldMessages.ContactPointResponse if (message.group == group_geometry): // check that the object is something we consider geometry
+            case PhysicsMessages.ContactPointResponse if (message.group == group_geometry): // check that the object is something we consider geometry
                 handle_geometry_contact(self, message.normal, message.distance);
         }
     }
@@ -186,7 +187,7 @@ class Hero extends defold.support.Script<HeroData> {
             self.velocity.y = self.velocity.y * 0.5;
     }
 
-    override function on_input(self:HeroData, action_id:Hash, action:InputAction):Bool {
+    override function on_input(self:HeroData, action_id:Hash, action:ScriptOnInputAction):Bool {
         switch (action_id) {
             case input_left:
                 self.move_input = -action.value;

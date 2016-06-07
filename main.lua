@@ -110,8 +110,8 @@ end
 local _hx_exports = _G
 _hx_exports["platformer"] = _hx_exports["platformer"] or _hx_empty()
 local Array = _hx_empty() local Date = _hx_empty() local Math = _hx_empty() local Reflect = _hx_empty() local String = _hx_empty() local Std = _hx_empty() local StringBuf = _hx_empty() local defold = {}
-defold._Message = {}
-defold._Message.Message_Impl_ = _hx_empty() defold.DefoldMessages = _hx_empty() defold.support = {}
+defold.GoMessages = _hx_empty() defold._Message = {}
+defold._Message.Message_Impl_ = _hx_empty() defold.PhysicsMessages = _hx_empty() defold.RenderMessages = _hx_empty() defold.SpriteMessages = _hx_empty() defold.support = {}
 defold.support.Script = _hx_empty() local haxe = {}
 haxe.ds = {}
 haxe.ds.ArraySort = _hx_empty() haxe.io = {}
@@ -742,6 +742,10 @@ StringBuf.prototype = _hx_anon(
   ,'__class__',  StringBuf
 )
 
+defold.GoMessages.new = {}
+defold.GoMessages.__name__ = true
+
+
 defold._Message.Message_Impl_.new = {}
 defold._Message.Message_Impl_.__name__ = true
 defold._Message.Message_Impl_._new = function(s) 
@@ -750,8 +754,16 @@ defold._Message.Message_Impl_._new = function(s)
 end
 
 
-defold.DefoldMessages.new = {}
-defold.DefoldMessages.__name__ = true
+defold.PhysicsMessages.new = {}
+defold.PhysicsMessages.__name__ = true
+
+
+defold.RenderMessages.new = {}
+defold.RenderMessages.__name__ = true
+
+
+defold.SpriteMessages.new = {}
+defold.SpriteMessages.__name__ = true
 
 
 defold.support.Script.new = function() 
@@ -1295,7 +1307,7 @@ platformer.Hero.__name__ = true
 
 platformer.Hero.prototype = _hx_anon(
   'init', function(self,_self) 
-    _G.msg.post(".",defold.DefoldMessages.AcquireInputFocus);
+    _G.msg.post(".",defold.GoMessages.AcquireInputFocus);
     _self.velocity = _G.vmath.vector3(0,0,0);
     _self.correction = _G.vmath.vector3();
     _self.ground_contact = false;
@@ -1357,7 +1369,7 @@ platformer.Hero.prototype = _hx_anon(
   'play_animation', function(self,_self,anim) 
     if ((_self.anim) ~= (anim)) then 
       
-      _G.msg.post("#sprite",defold.DefoldMessages.PlayAnimation,_hx_o({__fields__={id=true},id=anim}));
+      _G.msg.post("#sprite",defold.SpriteMessages.PlayAnimation,_hx_o({__fields__={id=true},id=anim}));
       _self.anim = anim;
     end;
   end,
@@ -1378,7 +1390,7 @@ platformer.Hero.prototype = _hx_anon(
     end;
   end,
   'on_message', function(self,_self,message_id,message,_) 
-    if ((message_id) == (defold.DefoldMessages.ContactPointResponse)) then 
+    if ((message_id) == (defold.PhysicsMessages.ContactPointResponse)) then 
       
       if ((message.group) == (platformer.Hero.group_geometry)) then 
         self:handle_geometry_contact(_self,message.normal,message.distance);
@@ -1472,7 +1484,7 @@ platformer.Main.__name__ = true
 
 platformer.Main.prototype = _hx_anon(
   'init', function(self,_) 
-    _G.msg.post("@render:",defold.DefoldMessages.ClearColor,_hx_o({__fields__={color=true},color=_G.vmath.vector4(0.37647058823529411,0.58039215686274515,0.72549019607843135,0)}));
+    _G.msg.post("@render:",defold.RenderMessages.ClearColor,_hx_o({__fields__={color=true},color=_G.vmath.vector4(0.37647058823529411,0.58039215686274515,0.72549019607843135,0)}));
   end
   ,'__class__',  platformer.Main
 )
@@ -1485,253 +1497,133 @@ _hx_string_mt.__add = function(a,b) return Std.string(a)..Std.string(b) end;
 _hx_string_mt.__concat = _hx_string_mt.__add
 _hx_array_mt.__index = Array.prototype
 
-defold.DefoldMessages.Exit = (function() 
+defold.GoMessages.AcquireInputFocus = (function() 
   local _hx_1
   
-  local this1 = _G.hash("exit");
+  local this1 = _G.hash("acquire_input_focus");
   
   _hx_1 = this1;
   return _hx_1
 end )()
-defold.DefoldMessages.Reboot = (function() 
+defold.GoMessages.Disable = (function() 
   local _hx_2
   
-  local this1 = _G.hash("reboot");
+  local this1 = _G.hash("disable");
   
   _hx_2 = this1;
   return _hx_2
 end )()
-defold.DefoldMessages.SetUpdateFrequency = (function() 
+defold.GoMessages.Enable = (function() 
   local _hx_3
   
-  local this1 = _G.hash("set_update_frequency");
+  local this1 = _G.hash("enable");
   
   _hx_3 = this1;
   return _hx_3
 end )()
-defold.DefoldMessages.StartRecord = (function() 
+defold.GoMessages.ReleaseInputFocus = (function() 
   local _hx_4
   
-  local this1 = _G.hash("start_record");
+  local this1 = _G.hash("release_input_focus");
   
   _hx_4 = this1;
   return _hx_4
 end )()
-defold.DefoldMessages.StopRecord = (function() 
+defold.GoMessages.SetParent = (function() 
   local _hx_5
   
-  local this1 = _G.hash("stop_record");
+  local this1 = _G.hash("set_parent");
   
   _hx_5 = this1;
   return _hx_5
 end )()
-defold.DefoldMessages.ToggleProfile = (function() 
+defold.PhysicsMessages.ApplyForce = (function() 
   local _hx_6
   
-  local this1 = _G.hash("toggle_profile");
+  local this1 = _G.hash("apply_force");
   
   _hx_6 = this1;
   return _hx_6
 end )()
-defold.DefoldMessages.AcquireInputFocus = (function() 
+defold.PhysicsMessages.CollisionResponse = (function() 
   local _hx_7
   
-  local this1 = _G.hash("acquire_input_focus");
+  local this1 = _G.hash("collision_response");
   
   _hx_7 = this1;
   return _hx_7
 end )()
-defold.DefoldMessages.Disable = (function() 
+defold.PhysicsMessages.ContactPointResponse = (function() 
   local _hx_8
   
-  local this1 = _G.hash("disable");
+  local this1 = _G.hash("contact_point_response");
   
   _hx_8 = this1;
   return _hx_8
 end )()
-defold.DefoldMessages.Enable = (function() 
+defold.PhysicsMessages.RayCastResponse = (function() 
   local _hx_9
   
-  local this1 = _G.hash("enable");
+  local this1 = _G.hash("ray_cast_response");
   
   _hx_9 = this1;
   return _hx_9
 end )()
-defold.DefoldMessages.ReleaseInputFocus = (function() 
+defold.PhysicsMessages.TriggerResponse = (function() 
   local _hx_10
   
-  local this1 = _G.hash("release_input_focus");
+  local this1 = _G.hash("trigger_response");
   
   _hx_10 = this1;
   return _hx_10
 end )()
-defold.DefoldMessages.SetParent = (function() 
+defold.RenderMessages.ClearColor = (function() 
   local _hx_11
   
-  local this1 = _G.hash("set_parent");
+  local this1 = _G.hash("clear_color");
   
   _hx_11 = this1;
   return _hx_11
 end )()
-defold.DefoldMessages.ApplyForce = (function() 
+defold.RenderMessages.DrawLine = (function() 
   local _hx_12
   
-  local this1 = _G.hash("apply_force");
+  local this1 = _G.hash("draw_line");
   
   _hx_12 = this1;
   return _hx_12
 end )()
-defold.DefoldMessages.CollisionResponse = (function() 
+defold.RenderMessages.DrawText = (function() 
   local _hx_13
   
-  local this1 = _G.hash("collision_response");
+  local this1 = _G.hash("draw_text");
   
   _hx_13 = this1;
   return _hx_13
 end )()
-defold.DefoldMessages.ContactPointResponse = (function() 
+defold.RenderMessages.WindowResized = (function() 
   local _hx_14
   
-  local this1 = _G.hash("contact_point_response");
+  local this1 = _G.hash("window_resized");
   
   _hx_14 = this1;
   return _hx_14
 end )()
-defold.DefoldMessages.RayCastResponse = (function() 
+defold.SpriteMessages.AnimationDone = (function() 
   local _hx_15
   
-  local this1 = _G.hash("ray_cast_response");
+  local this1 = _G.hash("animation_done");
   
   _hx_15 = this1;
   return _hx_15
 end )()
-defold.DefoldMessages.TriggerResponse = (function() 
+defold.SpriteMessages.PlayAnimation = (function() 
   local _hx_16
-  
-  local this1 = _G.hash("trigger_response");
-  
-  _hx_16 = this1;
-  return _hx_16
-end )()
-defold.DefoldMessages.SpineAnimationDone = (function() 
-  local _hx_17
-  
-  local this1 = _G.hash("spine_animation_done");
-  
-  _hx_17 = this1;
-  return _hx_17
-end )()
-defold.DefoldMessages.SpineEvent = (function() 
-  local _hx_18
-  
-  local this1 = _G.hash("spine_event");
-  
-  _hx_18 = this1;
-  return _hx_18
-end )()
-defold.DefoldMessages.AcquireCameraFocus = (function() 
-  local _hx_19
-  
-  local this1 = _G.hash("acquire_camera_focus");
-  
-  _hx_19 = this1;
-  return _hx_19
-end )()
-defold.DefoldMessages.ReleaseCameraFocus = (function() 
-  local _hx_20
-  
-  local this1 = _G.hash("release_camera_focus");
-  
-  _hx_20 = this1;
-  return _hx_20
-end )()
-defold.DefoldMessages.SetCamera = (function() 
-  local _hx_21
-  
-  local this1 = _G.hash("set_camera");
-  
-  _hx_21 = this1;
-  return _hx_21
-end )()
-defold.DefoldMessages.ClearColor = (function() 
-  local _hx_22
-  
-  local this1 = _G.hash("clear_color");
-  
-  _hx_22 = this1;
-  return _hx_22
-end )()
-defold.DefoldMessages.DrawLine = (function() 
-  local _hx_23
-  
-  local this1 = _G.hash("draw_line");
-  
-  _hx_23 = this1;
-  return _hx_23
-end )()
-defold.DefoldMessages.DrawText = (function() 
-  local _hx_24
-  
-  local this1 = _G.hash("draw_text");
-  
-  _hx_24 = this1;
-  return _hx_24
-end )()
-defold.DefoldMessages.WindowResized = (function() 
-  local _hx_25
-  
-  local this1 = _G.hash("window_resized");
-  
-  _hx_25 = this1;
-  return _hx_25
-end )()
-defold.DefoldMessages.AnimationDone = (function() 
-  local _hx_26
-  
-  local this1 = _G.hash("animation_done");
-  
-  _hx_26 = this1;
-  return _hx_26
-end )()
-defold.DefoldMessages.PlayAnimation = (function() 
-  local _hx_27
   
   local this1 = _G.hash("play_animation");
   
-  _hx_27 = this1;
-  return _hx_27
-end )()
-defold.DefoldMessages.PlaySound = (function() 
-  local _hx_28
-  
-  local this1 = _G.hash("play_sound");
-  
-  _hx_28 = this1;
-  return _hx_28
-end )()
-defold.DefoldMessages.SetGain = (function() 
-  local _hx_29
-  
-  local this1 = _G.hash("set_gain");
-  
-  _hx_29 = this1;
-  return _hx_29
-end )()
-defold.DefoldMessages.StopSound = (function() 
-  local _hx_30
-  
-  local this1 = _G.hash("stop_sound");
-  
-  _hx_30 = this1;
-  return _hx_30
-end )()
-defold.DefoldMessages.SetTile = (function() 
-  local _hx_31
-  
-  local this1 = _G.hash("set_tile");
-  
-  _hx_31 = this1;
-  return _hx_31
+  _hx_16 = this1;
+  return _hx_16
 end )()
 lua.Boot.hiddenFields = _hx_tab_array({[0]="__id__", "hx__closures", "super", "prototype", "__fields__", "__ifields__", "__class__", "__properties__" }, 8)
 platformer.Hero.move_acceleration = 3500
