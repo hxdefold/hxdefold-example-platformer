@@ -20,9 +20,6 @@ typedef HeroData = {
     var touch_jump_timer:Float;
 }
 
-
-// local msg_animation_done = hash("animation_done")
-
 class Hero extends defold.support.Script<HeroData> {
     // these are the tweaks for the mechanics, feel free to change them for a different feeling
     // the acceleration to move right/left
