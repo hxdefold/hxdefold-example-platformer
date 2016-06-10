@@ -109,15 +109,36 @@ end
 
 local _hx_exports = _G
 _hx_exports["platformer"] = _hx_exports["platformer"] or _hx_empty()
-local Array = _hx_empty() local Date = _hx_empty() local Math = _hx_empty() local Reflect = _hx_empty() local String = _hx_empty() local Std = _hx_empty() local StringBuf = _hx_empty() local defold = {}
-defold.GoMessages = _hx_empty() defold._Message = {}
-defold._Message.Message_Impl_ = _hx_empty() defold.PhysicsMessages = _hx_empty() defold.RenderMessages = _hx_empty() defold.SpriteMessages = _hx_empty() defold.support = {}
-defold.support.Script = _hx_empty() local haxe = {}
+local Array = _hx_empty()
+local Date = _hx_empty()
+local Math = _hx_empty()
+local Reflect = _hx_empty()
+local String = _hx_empty()
+local Std = _hx_empty()
+local StringBuf = _hx_empty()
+local defold = {}
+defold.GoMessages = _hx_empty()
+defold._Message = {}
+defold._Message.Message_Impl_ = _hx_empty()
+defold.PhysicsMessages = _hx_empty()
+defold.RenderMessages = _hx_empty()
+defold.SpriteMessages = _hx_empty()
+defold.support = {}
+defold.support.Script = _hx_empty()
+local haxe = {}
 haxe.ds = {}
-haxe.ds.ArraySort = _hx_empty() haxe.io = {}
-haxe.io.Eof = _hx_empty() local lua = {}
-lua.Boot = _hx_empty() lua.UserData = _hx_empty() lua.PairTools = _hx_empty() lua.Thread = _hx_empty() local platformer = {}
-platformer.Hero = _hx_empty() platformer.Main = _hx_empty() 
+haxe.ds.ArraySort = _hx_empty()
+haxe.io = {}
+haxe.io.Eof = _hx_empty()
+local lua = {}
+lua.Boot = _hx_empty()
+lua.UserData = _hx_empty()
+lua.PairTools = _hx_empty()
+lua.Thread = _hx_empty()
+local platformer = {}
+platformer.Hero = _hx_empty()
+platformer.Main = _hx_empty()
+
 local _hx_bind
 
 Array.new = function() 
@@ -749,8 +770,7 @@ defold.GoMessages.__name__ = true
 defold._Message.Message_Impl_.new = {}
 defold._Message.Message_Impl_.__name__ = true
 defold._Message.Message_Impl_._new = function(s) 
-  local this1 = _G.hash(s);
-  do return this1 end;
+  do return _G.hash(s) end;
 end
 
 
@@ -1497,134 +1517,26 @@ _hx_string_mt.__add = function(a,b) return Std.string(a)..Std.string(b) end;
 _hx_string_mt.__concat = _hx_string_mt.__add
 _hx_array_mt.__index = Array.prototype
 
-defold.GoMessages.AcquireInputFocus = (function() 
-  local _hx_1
-  
-  local this1 = _G.hash("acquire_input_focus");
-  
-  _hx_1 = this1;
-  return _hx_1
-end )()
-defold.GoMessages.Disable = (function() 
-  local _hx_2
-  
-  local this1 = _G.hash("disable");
-  
-  _hx_2 = this1;
-  return _hx_2
-end )()
-defold.GoMessages.Enable = (function() 
-  local _hx_3
-  
-  local this1 = _G.hash("enable");
-  
-  _hx_3 = this1;
-  return _hx_3
-end )()
-defold.GoMessages.ReleaseInputFocus = (function() 
-  local _hx_4
-  
-  local this1 = _G.hash("release_input_focus");
-  
-  _hx_4 = this1;
-  return _hx_4
-end )()
-defold.GoMessages.SetParent = (function() 
-  local _hx_5
-  
-  local this1 = _G.hash("set_parent");
-  
-  _hx_5 = this1;
-  return _hx_5
-end )()
-defold.PhysicsMessages.ApplyForce = (function() 
-  local _hx_6
-  
-  local this1 = _G.hash("apply_force");
-  
-  _hx_6 = this1;
-  return _hx_6
-end )()
-defold.PhysicsMessages.CollisionResponse = (function() 
-  local _hx_7
-  
-  local this1 = _G.hash("collision_response");
-  
-  _hx_7 = this1;
-  return _hx_7
-end )()
-defold.PhysicsMessages.ContactPointResponse = (function() 
-  local _hx_8
-  
-  local this1 = _G.hash("contact_point_response");
-  
-  _hx_8 = this1;
-  return _hx_8
-end )()
-defold.PhysicsMessages.RayCastResponse = (function() 
-  local _hx_9
-  
-  local this1 = _G.hash("ray_cast_response");
-  
-  _hx_9 = this1;
-  return _hx_9
-end )()
-defold.PhysicsMessages.TriggerResponse = (function() 
-  local _hx_10
-  
-  local this1 = _G.hash("trigger_response");
-  
-  _hx_10 = this1;
-  return _hx_10
-end )()
-defold.RenderMessages.ClearColor = (function() 
-  local _hx_11
-  
-  local this1 = _G.hash("clear_color");
-  
-  _hx_11 = this1;
-  return _hx_11
-end )()
-defold.RenderMessages.DrawLine = (function() 
-  local _hx_12
-  
-  local this1 = _G.hash("draw_line");
-  
-  _hx_12 = this1;
-  return _hx_12
-end )()
-defold.RenderMessages.DrawText = (function() 
-  local _hx_13
-  
-  local this1 = _G.hash("draw_text");
-  
-  _hx_13 = this1;
-  return _hx_13
-end )()
-defold.RenderMessages.WindowResized = (function() 
-  local _hx_14
-  
-  local this1 = _G.hash("window_resized");
-  
-  _hx_14 = this1;
-  return _hx_14
-end )()
-defold.SpriteMessages.AnimationDone = (function() 
-  local _hx_15
-  
-  local this1 = _G.hash("animation_done");
-  
-  _hx_15 = this1;
-  return _hx_15
-end )()
-defold.SpriteMessages.PlayAnimation = (function() 
-  local _hx_16
-  
-  local this1 = _G.hash("play_animation");
-  
-  _hx_16 = this1;
-  return _hx_16
-end )()
+defold.GoMessages.AcquireInputFocus = _G.hash("acquire_input_focus")
+defold.GoMessages.Disable = _G.hash("disable")
+defold.GoMessages.Enable = _G.hash("enable")
+defold.GoMessages.ReleaseInputFocus = _G.hash("release_input_focus")
+defold.GoMessages.RequestTransform = _G.hash("request_transform")
+defold.GoMessages.SetParent = _G.hash("set_parent")
+defold.GoMessages.TransformResponse = _G.hash("transform_response")
+defold.PhysicsMessages.ApplyForce = _G.hash("apply_force")
+defold.PhysicsMessages.CollisionResponse = _G.hash("collision_response")
+defold.PhysicsMessages.ContactPointResponse = _G.hash("contact_point_response")
+defold.PhysicsMessages.RequestVelocity = _G.hash("request_velocity")
+defold.PhysicsMessages.RayCastResponse = _G.hash("ray_cast_response")
+defold.PhysicsMessages.TriggerResponse = _G.hash("trigger_response")
+defold.PhysicsMessages.VelocityResponse = _G.hash("velocity_response")
+defold.RenderMessages.ClearColor = _G.hash("clear_color")
+defold.RenderMessages.DrawLine = _G.hash("draw_line")
+defold.RenderMessages.DrawText = _G.hash("draw_text")
+defold.RenderMessages.WindowResized = _G.hash("window_resized")
+defold.SpriteMessages.AnimationDone = _G.hash("animation_done")
+defold.SpriteMessages.PlayAnimation = _G.hash("play_animation")
 lua.Boot.hiddenFields = _hx_tab_array({[0]="__id__", "hx__closures", "super", "prototype", "__fields__", "__ifields__", "__class__", "__properties__" }, 8)
 platformer.Hero.move_acceleration = 3500
 platformer.Hero.air_acceleration_factor = 0.8
