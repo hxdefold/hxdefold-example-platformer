@@ -1,10 +1,8 @@
 package platformer;
 
 import defold.Msg;
-import defold.Message;
+import defold.types.*;
 import defold.Vmath;
-import defold.Vector3;
-import defold.Hash;
 import defold.Go;
 import defold.Sprite;
 import defold.Physics;
