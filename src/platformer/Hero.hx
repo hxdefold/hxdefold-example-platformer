@@ -47,7 +47,7 @@ class Hero extends Script<HeroData> {
 
     override function init(self:HeroData) {
         // this lets us handle input in this script
-        Msg.post(".", GoMessages.AcquireInputFocus);
+        Msg.post(".", GoMessages.acquire_input_focus);
 
         // initial player velocity
         self.velocity = Vmath.vector3(0, 0, 0);
@@ -131,7 +131,7 @@ class Hero extends Script<HeroData> {
         // only play animations which are not already playing
         if (self.anim != anim) {
             // tell the sprite to play the animation
-            Msg.post("#sprite", SpriteMessages.PlayAnimation, {id: anim});
+            Msg.post("#sprite", SpriteMessages.play_animation, {id: anim});
             // remember which animation is playing
             self.anim = anim;
         }
@@ -162,7 +162,7 @@ class Hero extends Script<HeroData> {
     override function on_message<T>(self:HeroData, message_id:Message<T>, message:T, _) {
         // check if we received a contact point message
         switch (message_id) {
-            case PhysicsMessages.ContactPointResponse if (message.group == group_geometry): // check that the object is something we consider geometry
+            case PhysicsMessages.contact_point_response if (message.group == group_geometry): // check that the object is something we consider geometry
                 handle_geometry_contact(self, message.normal, message.distance);
         }
     }
