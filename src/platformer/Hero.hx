@@ -8,6 +8,7 @@ import defold.Sprite;
 import defold.Physics;
 import Defold.hash;
 import defold.support.Script;
+import defold.support.ScriptOnInputAction;
 
 typedef HeroData = {
     var velocity:Vector3;
