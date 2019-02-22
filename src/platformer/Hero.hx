@@ -163,7 +163,7 @@ class Hero extends Script<HeroData> {
     override function on_message<T>(self:HeroData, message_id:Message<T>, message:T, _) {
         // check if we received a contact point message
         switch (message_id) {
-            case PhysicsMessages.contact_point_response if (message.group == group_geometry): // check that the object is something we consider geometry
+            case PhysicsMessages.contact_point_response if (message.other_group == group_geometry): // check that the object is something we consider geometry
                 handle_geometry_contact(self, message.normal, message.distance);
         }
     }
